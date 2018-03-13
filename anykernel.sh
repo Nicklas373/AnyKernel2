@@ -8,7 +8,7 @@
 properties() {
 kernel.string=Matsuura Kernel by Nicklas Van Dam @ xda-developers
 do.devicecheck=1
-do.modules=0
+do.modules=1
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=nicki
@@ -60,9 +60,8 @@ dump_boot;
 insert_line init.qcom.rc "init.matsuura.rc" after "init.target.rc" "import init.matsuura.rc";
 
 # Disable mpdecision and thermald on boot
-replace_section init.qcom.rc "start mpdecision" "start mpdecision\n"
 replace_section init.target.rc "service thermald" "group root" "service thermald /system/bin/thermald\n    class main\n    user root\n	group root\n    disabled";
-replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /system/bin/mpdecision --avg_comp\n    class main\n    user root\n    group root system\n disabled";
+replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /system/bin/mpdecision --no_sleep --avg_comp\n    class main\n    user root\n    group root system\n disabled";
 
 # end ramdisk changes
 
