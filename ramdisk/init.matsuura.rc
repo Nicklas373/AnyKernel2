@@ -8,15 +8,7 @@ on post-fs-data
 
 	# Adjust CPU Modules for Governor,Frequency and other features
 	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1242000
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "lionheart"
 	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq 1242000
-	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "lionheart"
-	write /sys/module/cpu_boost/parameters/boost_ms 20
-	write /sys/module/cpu_boost/paramaters/sync_threshold 594000
-	write /sys/module/cpu_boost/paramaters/input_boost_ms 40
-	write /sys/module/cpu_boost/paramaters/input_boost_freq "0:810000 1:810000"
 
 	# Adjust Power Efficient Workqueue
 	chmod 0644 /sys/module/workqueue/parameters/power_efficient
@@ -25,6 +17,7 @@ on post-fs-data
 	# Adjust Intelli Plug
 	write /sys/module/intelli_plug/parameters/intelli_plug_active 1
 	write /sys/module/intelli_plug/parameters/touch_boost_active 1
+	write /sys/module/intelli_plug/parameters/nr_run_profile_sel 3
 	write /sys/module/intelli_plug/parameters/cpu_nr_run_threshold 722
 	write /sys/module/intelli_plug/parameters/nr_run_hysteresis 4
 	write /sys/module/intelli_plug/parameters/screen_off_max 384000
@@ -36,6 +29,9 @@ on post-fs-data
 	write /sys/module/msm_thermal/parameters/thermal_limit_low 2
 	write /sys/module/msm_thermal/parameters/thermal_limit_high 11
 	write /sys/module/msm_thermal/parameters/poll_ms 250
+
+	# Adjust Display Configurations
+	write /sys/android_touch/doubletap2wake 2
 
 	# Adjust I/O Schedulers
 	write /sys/block/mmcblk0/queue/scheduler "bfq"
@@ -53,4 +49,15 @@ on post-fs-data
 	write /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws "N"
 	write /sys/module/wakeup/parameters/enable_wlan_wake_ws "N"
 
+on property:sys.boot_completed=1
 	
+	# Adjust CPU Modules for Governor,Frequency and other features
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor Lionheart
+	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor Lionheart
+	write /sys/devices/system/cpu/cpufreq/Lionheart/down_threshold 30
+	write /sys/devices/system/cpu/cpufreq/Lionheart/freq_step 5
+	write /sys/devices/system/cpu/cpufreq/Lionheart/ignore_nice_load 0
+	write /sys/devices/system/cpu/cpufreq/Lionheart/sampling_down_factor 1
+	write /sys/devices/system/cpu/cpufreq/Lionheart/sampling_rate 10000
+	write /sys/devices/system/cpu/cpufreq/Lionheart/sampling_rate_min 10000
+	write /sys/devices/system/cpu/cpufreq/Lionheart/up_threshold 65

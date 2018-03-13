@@ -57,7 +57,16 @@ dump_boot;
 
 # init.qcom.rc
 # Add init.matsuura.rc
+backup_file init.qcom.rc
 insert_line init.qcom.rc "init.matsuura.rc" after "init.target.rc" "import init.matsuura.rc";
+replace_line init.qcom.rc "start mpdecision" "stop mpdecision"
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive"
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive" 
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 90" 
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 702000" 
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1" 
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis 100000"
+remove_line init.qcom.rc "write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000"
 
 # Disable mpdecision and thermald on boot
 replace_section init.target.rc "service thermald" "group root" "service thermald /system/bin/thermald\n    class main\n    user root\n	group root\n    disabled";
