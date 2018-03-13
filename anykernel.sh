@@ -62,7 +62,7 @@ insert_line init.qcom.rc "init.matsuura.rc" after "init.target.rc" "import init.
 # Disable mpdecision and thermald on boot
 replace_section init.qcom.rc "start mpdecision" "start mpdecision\n"
 replace_section init.target.rc "service thermald" "group root" "service thermald /system/bin/thermald\n    class main\n    user root\n	group root\n    disabled";
-replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /system/bin/mpdecision --avg_comp\n    class main\n    user root\n    group root system\n";
+replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /system/bin/mpdecision --avg_comp\n    class main\n    user root\n    group root system\n disabled";
 
 # end ramdisk changes
 
