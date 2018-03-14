@@ -1,0 +1,102 @@
+#
+# Init script for Matsuura Kernel to set on boot
+# Nicklas Van Dam @ XDA
+# プロジェクト　ラブライブ | Project Matsuura (2018)
+#
+
+on post-fs-data
+	
+	# Adjust CPU Modules for Governor,Frequency and other features
+	write /sys/devices/system/cpu/sched_mc_power_savings 1
+	
+	# Adjust Power Efficient Workqueue
+	chmod 0644 /sys/module/workqueue/parameters/power_efficient
+	write /sys/module/workqueue/parameters/power_efficient "Y"
+
+	# Adjust CPU Boost Module
+	write /sys/module/cpu_boost/parameters/cpu_boost 1
+	write /sys/module/cpu_boost/parameters/boost_ms 20
+	write /sys/module/cpu_boost/parameters/input_boost_ms 40
+	write /sys/module/cpu_boost/parameters/sync_threshold 499200
+	write /sys/module/cpu_boost/parameters/input_boost_freq 787200
+
+	# Adjust Intelli Plug v5 Module
+	write /sys/kernel/intelli_plug/intelli_plug_active 1
+	write /sys/kernel/intelli_plug/full_mode_profile 1
+	write /sys/kernel/intelli_plug/nr_run_hysteresis 8
+	write /sys/kernel/intelli_plug/cpu_nr_run_threshold 350
+	write /sys/kernel/intelli_plug/cpus_boosted 2
+	write /sys/kernel/intelli_plug/min_cpus_online 1
+	write /sys/kernel/intelli_plug/max_cpus_online 4
+	write /sys/kernel/intelli_plug/def_sampling_ms 30
+	write /sys/kernel/intelli_plug/boost_lock_duration 500
+	write /sys/kernel/intelli_plug/down_lock_duration 2000
+	write /sys/kernel/intelli_plug/nr_fshift 3
+
+	# Adjust Intelli Thermal
+	write /sys/module/msm_thermal/parameters/enabled "Y"
+	write /sys/module/msm_thermal/core_control/enabled 1
+	write /sys/module/msm_thermal/parameters/limit_temp_degC 70
+	write /sys/module/msm_thermal/parameters/core_limit_temp_degC 80
+	write /sys/module/msm_thermal/parameters/poll_ms 500
+	write /sys/module/msm_thermal/parameters/thermal_limit_low 2
+	write /sys/module/msm_thermal/parameters/thermal_limit_high 14
+
+	# Adjust GPU Module
+	write /sys/class/kgsl/kgsl-3d0/devfreq/max_gpuclk 450000000
+	write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 100000000
+	write /sys/class/kgsl/kgsk-3d0/devfreq/governor "msm-adreno-tz"
+	
+	# Adjust Simple GPU Algorithm Module
+	write /sys/module/simple_gpu_algorithm/parameters/simple_gpu_active 1
+	write /sys/module/simple_gpu_algorithm/parameters/simple_laziness 4
+	write /sys/module/simple_gpu_algorithm/parameters/simple_ramp_method 5000
+
+	# Adjust Headset High Performance Mode (HPF)
+	write /sys/devices/virtual/misc/soundcontrol/highperf_enabled 1
+	
+	# Adjust I/O Scheduler Module
+	write /sys/block/mmcblk0/queue/scheduler "maple"
+	write /sys/block/mmcblk1/queue/scheduler "maple"
+
+	# Adjust Misc Configurations
+	write /sys/kernel/logger_mode/logger_mode 0
+	write /sys/module/mmc_core/parameters/use_spi_crc 0
+	write /sys/module/dyn_fsync/Dyn_fsync_active 1
+	write /sys/kernel/sched/gentle_fair_sleepers 0
+	write /sys/kernel/sched/arch_power 1
+	write /sys/kernel/power_suspend/power_suspend_mode 3
+	write /sys/kernel/power_suspend/power_suspend_state 0
+
+	# Adjust Wakelock Configurations
+	write /sys/module/wakeup/parameters/enable_smb135x_wake_ws "N"
+	write /sys/module/wakeup/parameters/enable_si_ws "N"
+	write /sys/module/wakeup/parameters/enable_msm_hsic_ws "N"
+	write /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws "N"
+	write /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws "N"
+	write /sys/module/wakeup/parameters/enable_wlan_wake_ws "N"
+
+on property:sys.boot_completed=1
+	
+	# Adjust CPU Modules for Governor,Frequency and other features
+	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_max_freq 1401600	
+	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpufreq/chill/boost_count 2
+	write /sys/devices/system/cpu/cpufreq/chill/boost_enabled 1
+	write /sys/devices/system/cpu/cpufreq/chill/down_threshold 30
+	write /sys/devices/system/cpu/cpufreq/chill/down_threshold_suspended 45
+	write /sys/devices/system/cpu/cpufreq/chill/freq_step 5
+	write /sys/devices/system/cpu/cpufreq/chill/ignore_nice_load 0
+	write /sys/devices/system/cpu/cpufreq/chill/sampling_rate 20000
+	write /sys/devices/system/cpu/cpufreq/chill/up_threshold 80
+	

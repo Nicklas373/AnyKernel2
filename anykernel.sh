@@ -1,23 +1,32 @@
 # AnyKernel2 Ramdisk Mod Script
 # osm0sis @ xda-developers
+# Nicklas Van Dam @ XDA
+# プロジェクト　ラブライブ | Project Matsuura (2018)
 
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=DirtyV by bsmitty83 @ xda-developers
+kernel.string=Matsuura Kernel by Nicklas Van Dam @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=maguro
-device.name2=toro
-device.name3=toroplus
-device.name4=
-device.name5=
+device.name1=D2202
+device.name2=D2203
+device.name3=D2243
+device.name4=D2212
+device.name5=flamingo
+
+# Required for possible inline kernel flashing
+if [ ! -f /recovery ] ; then
+    alias gunzip="/tmp/anykernel/tools/busybox gunzip";
+    alias cpio="/tmp/anykernel/tools/busybox cpio";
+fi
+
 } # end properties
 
 # shell variables
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=/dev/block/bootdevice/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 
@@ -33,27 +42,24 @@ chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
 
 
+ui_print "======================================";
+ui_print "|                                    |";
+ui_print "|            Matsuura Kernel         |";
+ui_print "|                                    |";
+ui_print "======================================";
+ui_print "            XDA - Developers          ";
+
 ## AnyKernel install
 dump_boot;
 
-# begin ramdisk changes
+# Ramdisk Modifications
+# init.flamingo.rc
+insert_line init.flamingo.rc "init.matsuura.rc" after "init.common.rc" "init.common.usb.rc" "init.yukon.pwr.rc";
+replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision";
 
-# init.rc
-backup_file init.rc;
-replace_string init.rc "cpuctl cpu,timer_slack" "mount cgroup none /dev/cpuctl cpu" "mount cgroup none /dev/cpuctl cpu,timer_slack";
-append_file init.rc "run-parts" init;
-
-# init.tuna.rc
-backup_file init.tuna.rc;
-insert_line init.tuna.rc "nodiratime barrier=0" after "mount_all /fstab.tuna" "\tmount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/userdata /data remount nosuid nodev noatime nodiratime barrier=0";
-append_file init.tuna.rc "dvbootscript" init.tuna;
-
-# fstab.tuna
-backup_file fstab.tuna;
-patch_fstab fstab.tuna /system ext4 options "noatime,barrier=1" "noatime,nodiratime,barrier=0";
-patch_fstab fstab.tuna /cache ext4 options "barrier=1" "barrier=0,nomblk_io_submit";
-patch_fstab fstab.tuna /data ext4 options "data=ordered" "nomblk_io_submit,data=writeback";
-append_file fstab.tuna "usbdisk" fstab;
+# Disable mpdecision and thermald on boot
+replace_section init.common.rc "service thermal-engine" "group root" "service thermal-engine /vendor/bin/thermal-engine\n    class main\n    user root\n		group root\n	writepid /dev/cpuset/system-background/task";
+replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /vendor/bin/mpdecision --avg_comp\n    class main\n    user root\n    group root	system\n	disabled	writepid /dev/cpuset/system-background/task";
 
 # end ramdisk changes
 
