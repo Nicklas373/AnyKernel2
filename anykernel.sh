@@ -54,7 +54,7 @@ dump_boot;
 
 # Ramdisk Modifications
 # init.flamingo.rc
-backup_file init.qcom.rc
+backup_file init.flamingo.rc
 insert_line init.flamingo.rc "init.matsuura.rc" after "init.common.rc" "init.common.usb.rc" "init.yukon.pwr.rc" "import init.matsuura.rc";
 replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision"
 
