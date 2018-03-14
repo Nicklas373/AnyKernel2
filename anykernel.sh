@@ -54,8 +54,9 @@ dump_boot;
 
 # Ramdisk Modifications
 # init.flamingo.rc
-insert_line init.flamingo.rc "init.matsuura.rc" after "init.common.rc" "init.common.usb.rc" "init.yukon.pwr.rc";
-replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision";
+backup_file init.qcom.rc
+insert_line init.flamingo.rc "init.matsuura.rc" after "init.common.rc" "init.common.usb.rc" "init.yukon.pwr.rc" "import init.matsuura.rc";
+replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision"
 
 # Disable mpdecision and thermald on boot
 replace_section init.common.rc "service thermal-engine" "group root" "service thermal-engine /vendor/bin/thermal-engine\n    class main\n    user root\n		group root\n	writepid /dev/cpuset/system-background/task";
