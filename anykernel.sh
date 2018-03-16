@@ -26,9 +26,9 @@ fi
 } # end properties
 
 # shell variables
-block=/dev/block/bootdevice/by-name/boot;
+block=/dev/block/platform/msm_sdcc.1/by-name/boot;
 is_slot_device=0;
-ramdisk_compression=auto;
+ramdisk_compression=gz;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
@@ -54,9 +54,9 @@ dump_boot;
 
 # Ramdisk Modifications
 # init.flamingo.rc
-backup_file init.flamingo.rc
-insert_line init.flamingo.rc "init.matsuura.rc" after "init.yukon.pwr.rc" "import init.matsuura.rc";
-replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision"
+backup_file init.flamingo.rc;
+insert_line init.flamingo.rc "import init.common.rc" after "import init.common.usb.rc" "import init.matsuura.rc";
+replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision";
 
 # Disable mpdecision and thermald on boot
 replace_section init.common.rc "service thermal-engine" "group root" "service thermal-engine /vendor/bin/thermal-engine\n    class main\n    user root\n	group root\n	writepid /dev/cpuset/system-background/task";
