@@ -26,7 +26,7 @@ fi
 } # end properties
 
 # shell variables
-block=/dev/block/platform/msm_sdcc.1/by-name/boot;
+block=/dev/block/bootdevice/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=gz;
 
@@ -53,14 +53,17 @@ ui_print "            XDA - Developers          ";
 dump_boot;
 
 # Ramdisk Modifications
-# init.flamingo.rc
-backup_file init.flamingo.rc;
-insert_line init.flamingo.rc "import init.common.rc" after "import init.common.usb.rc" "import init.matsuura.rc";
-replace_line init.yukon.pwr.rc "start mpdecision" "stop mpdecision";
+# Try to push custom init to available init file when used on recovery (TWRP)
+backup_file init.rc;
+insert_line init.rc "init.matsuura.rc" before "import /init.usb.rc" "import init.matsuura.rc";
 
-# Disable mpdecision and thermald on boot
-replace_section init.common.rc "service thermal-engine" "group root" "service thermal-engine /vendor/bin/thermal-engine\n    class main\n    user root\n	group root\n	writepid /dev/cpuset/system-background/task";
-replace_section init.target.rc "service mpdecision" "group root system" "service mpdecision /vendor/bin/mpdecision --avg_comp\n    class main\n    user root\n    group root	system\n	disabled	writepid /dev/cpuset/system-background/task";
+# Try to disable mpdecision on boot
+replace_string init.yukon.pwr.rc "#start mpdecision" "start mpdecision" "#start mpdecision";
+replace_string init.common.rc "#service mpdecision /system/vendor/bin/mpdecision --avg_comp" "service mpdecision /system/vendor/bin/mpdecision --avg_comp" "#service mpdecision /system/vendor/bin/mpdecision --avg_comp";
+replace_string init.common.rc "#user root" "user root" "#user root";
+replace_string init.common.rc "#group root system" "group root system" "#group root system";
+replace_string init.common.rc "#disabled" "disabled" "#disabled";
+replace_string init.common.rc "#writepid /dev/cpuset/system-background/tasks" "writepid /dev/cpuset/system-background/tasks" "#writepid /dev/cpuset/system-background/tasks"
 
 # end ramdisk changes
 

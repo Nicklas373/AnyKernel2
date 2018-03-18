@@ -4,9 +4,29 @@
 # プロジェクト　ラブライブ | Project Matsuura (2018)
 #
 
-on post-fs-data
+on property:sys.boot_completed=1
 	
 	# Adjust CPU Modules for Governor,Frequency and other features
+	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_max_freq 1401600
+	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_max_freq 1401600	
+	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_min_freq 384000
+	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor chill
+	write /sys/devices/system/cpu/cpufreq/chill/boost_count 2
+	write /sys/devices/system/cpu/cpufreq/chill/boost_enabled 1
+	write /sys/devices/system/cpu/cpufreq/chill/down_threshold 30
+	write /sys/devices/system/cpu/cpufreq/chill/down_threshold_suspended 45
+	write /sys/devices/system/cpu/cpufreq/chill/freq_step 5
+	write /sys/devices/system/cpu/cpufreq/chill/ignore_nice_load 0
+	write /sys/devices/system/cpu/cpufreq/chill/sampling_rate 20000
+	write /sys/devices/system/cpu/cpufreq/chill/up_threshold 80
 	write /sys/devices/system/cpu/sched_mc_power_savings 1
 	
 	# Adjust Power Efficient Workqueue
@@ -75,28 +95,4 @@ on post-fs-data
 	write /sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws "N"
 	write /sys/module/wakeup/parameters/enable_wlan_rx_wake_ws "N"
 	write /sys/module/wakeup/parameters/enable_wlan_wake_ws "N"
-
-on property:sys.boot_completed=1
-	
-	# Adjust CPU Modules for Governor,Frequency and other features
-	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_max_freq 1401600
-	write /sys/devices/system/cpu/cpu0/cpufreq/scalling_min_freq 384000
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor chill
-	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_max_freq 1401600
-	write /sys/devices/system/cpu/cpu1/cpufreq/scalling_min_freq 384000
-	write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor chill
-	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_max_freq 1401600
-	write /sys/devices/system/cpu/cpu2/cpufreq/scalling_min_freq 384000
-	write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor chill
-	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_max_freq 1401600	
-	write /sys/devices/system/cpu/cpu3/cpufreq/scalling_min_freq 384000
-	write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor chill
-	write /sys/devices/system/cpu/cpufreq/chill/boost_count 2
-	write /sys/devices/system/cpu/cpufreq/chill/boost_enabled 1
-	write /sys/devices/system/cpu/cpufreq/chill/down_threshold 30
-	write /sys/devices/system/cpu/cpufreq/chill/down_threshold_suspended 45
-	write /sys/devices/system/cpu/cpufreq/chill/freq_step 5
-	write /sys/devices/system/cpu/cpufreq/chill/ignore_nice_load 0
-	write /sys/devices/system/cpu/cpufreq/chill/sampling_rate 20000
-	write /sys/devices/system/cpu/cpufreq/chill/up_threshold 80
 	
