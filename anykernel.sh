@@ -14,7 +14,7 @@ supported.versions=8.1.0,9
 '; } # end properties
 
 # shell variables
-block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;;
+block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=gz;
 
@@ -29,6 +29,14 @@ ramdisk_compression=gz;
 chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
 
+
+## Treble Check
+is_treble=$(file_getprop /system/build.prop "ro.treble.enabled");
+if [ ! "$is_treble" -o "$is_treble" == "false" ]; then
+  ui_print " ";
+  ui_print "Englezos Kernel only supports Treble ROMS!";
+  exit 1;
+fi;
 
 ## AnyKernel install
 dump_boot;
