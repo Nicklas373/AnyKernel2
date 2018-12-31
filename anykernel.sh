@@ -10,7 +10,7 @@ do.modules=0
 do.cleanup=1
 do.cleanuponabort=1
 device.name1=mido
-supported.versions=
+supported.versions=8.1.0,9
 '; } # end properties
 
 # shell variables
