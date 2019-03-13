@@ -4,23 +4,19 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=
+kernel.string=Yume Kernel for Xiaomi Redmi Note 4(X) Snapdragon
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
-do.cleanuponabort=0
-device.name1=
-device.name2=
-device.name3=
-device.name4=
-device.name5=
+do.cleanuponabort=1
+device.name1=mido
 supported.versions=
 '; } # end properties
 
 # shell variables
-block=;
+block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;;
 is_slot_device=0;
-ramdisk_compression=auto;
+ramdisk_compression=gz;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
