@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Yume Kernel for Xiaomi Redmi Note 4(X) Snapdragon
+kernel.string=Clarity Kernel for Xiaomi Redmi Note 4(X) Snapdragon
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
@@ -34,7 +34,7 @@ chown -R root:root $ramdisk/*;
 is_treble=$(file_getprop /system/build.prop "ro.treble.enabled");
 if [ ! "$is_treble" -o "$is_treble" == "false" ]; then
   ui_print " ";
-  ui_print "Englezos Kernel only supports Treble ROMS!";
+  ui_print "This Kernel only supports Treble ROMS!";
   exit 1;
 fi;
 
