@@ -43,6 +43,9 @@ dump_boot;
 
 # begin ramdisk changes
 
+# init.rc
+insert_line init.rc "clarity" after 'import /init.${ro.zygote}.rc' 'import /init.clarity.rc';
+
 # end ramdisk changes
 
 write_boot;

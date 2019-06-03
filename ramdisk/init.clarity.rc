@@ -1,0 +1,46 @@
+on init
+    # set default schedTune value for foreground/top-app
+    write /dev/stune/background/schedtune.prefer_idle 0
+    write /dev/stune/foreground/schedtune.prefer_idle 0
+    write /dev/stune/rt/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.prefer_idle 0
+    write /dev/stune/schedtune.prefer_idle 0
+    write /dev/cpuset/background/cpus "0-7"
+    write /dev/cpuset/foreground/cpus "0-7"
+    write /dev/cpuset/restricted/cpus "0-7"
+    write /dev/cpuset/system-background/cpus "0-7"
+    write /dev/cpuset/top-app/cpus "0-7"
+
+on late-fs
+
+# Run post-boot script after Qualcomm's post_boot shell script
+on property:init.svc.qcom-post-boot=stopped
+    # CPU values
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1689600
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
+    write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
+    write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
+
+    # GPU Values
+    write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
+    write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
+    write /sys/class/kgsl/kgsl-3d0/max_gpuclk 650000000
+    write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
+
+    # Thermal Engine
+    chmod 0644 /sys/module/msm_thermal/parameters/enabled
+    write /sys/module/msm_thermal/parameters/enabled 1
+    chmod 0644 /sys/module/msm_thermal/core_control/enabled
+    write /sys/module/msm_thermal/core_control/enabled 0
+    chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
+    write /sys/module/msm_thermal/vdd_restriction/enabled 0
+
+    # Fast Charge
+    write /sys/class/power_supply/battery/allow_hvdcp3 0
+    write /sys/kernel/fast_charge/force_fast_charge 0
+    write /sys/module/qpnp_smbcharger/parameters/default_hvdcp3_icl_ma 100
+    
+    # I/O Scheduler
+    write /sys/block/mmcblk0/queue/scheduler "cfq"
