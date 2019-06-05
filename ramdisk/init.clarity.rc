@@ -18,6 +18,9 @@ on late-fs
 # Execute only after boot is complete
 on property:sys.boot_completed=1
 
+   # Set up Lower CPU Freq after boot (Experimental)
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1689600
+
    # Set up CFQ I/O Scheduler
    setprop sys.io.scheduler cfq
 
@@ -28,6 +31,15 @@ on property:sys.boot_completed=1
    write /sys/block/dm-1/queue/iosched/slice_idle 0
    write /sys/block/sda/queue/iosched/slice_idle 0
 
+   # Disable Audio Optimizations (Experimental)
+   write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
+   write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
+   write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
+   write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
+
+   # Enable Qualcomm Power Gating (Experimental)
+   write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 0
+
 # Run post-boot script after Qualcomm's post_boot shell script
 on property:init.svc.qcom-post-boot=stopped
     # CPU values
@@ -37,6 +49,10 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
     write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
+
+    # Power Efficient Workqueue
+    chmod 0644 /sys/module/workqueue/parameters/power_efficient
+    write /sys/module/workqueue/parameters/power_efficient Y
 
     # GPU Values
     write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
@@ -58,8 +74,6 @@ on property:init.svc.qcom-post-boot=stopped
     # I/O Scheduler
     write /sys/block/mmcblk1/queue/read_ahead_kb 128
 
-    # Low Memory Killer (Experimental)
+    # Low Memory Killer
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 0
-
-
