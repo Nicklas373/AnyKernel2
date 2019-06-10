@@ -1,5 +1,9 @@
 # Clarity Kernel Tweaks And Parameters
 
+on early-init
+    # Set init and its forked children's oom_adj.
+    write /proc/1/oom_score_adj -1000
+
 on init
     # set default schedTune value for foreground/top-app (EAS Only)
     write /dev/stune/background/schedtune.prefer_idle 0
@@ -32,7 +36,7 @@ on property:sys.boot_completed=1
 on property:init.svc.qcom-post-boot=stopped
     # CPU values
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1689600
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
@@ -66,11 +70,11 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 0
 
-    # Disable Audio Optimizations (Experimental)
+    # Disable Audio Optimizations
     write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
     write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
     write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
     write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
 
-    # Enable Qualcomm Power Gating (Experimental)
+    # Enable Qualcomm Power Gating
     write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 0
