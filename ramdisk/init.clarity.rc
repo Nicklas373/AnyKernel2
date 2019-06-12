@@ -1,9 +1,5 @@
 # Clarity Kernel Tweaks And Parameters
 
-on early-init
-    # Set init and its forked children's oom_adj.
-    write /proc/1/oom_score_adj -1000
-
 on init
     # set default schedTune value for foreground/top-app (EAS Only)
     write /dev/stune/background/schedtune.prefer_idle 0
@@ -59,6 +55,8 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/msm_thermal/core_control/enabled 0
     chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
     write /sys/module/msm_thermal/vdd_restriction/enabled 0
+    write /sys/module/msm_thermal/parameters/core_limit_temp_degC 70
+    write /sys/module/msm_thermal/parameters/temp_threshold 60
 
     # Battery
     write /sys/kernel/fast_charge/force_fast_charge 0
@@ -77,4 +75,4 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
 
     # Enable Qualcomm Power Gating
-    write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 0
+    write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 1

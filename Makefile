@@ -1,8 +1,8 @@
-NAME ?= Clarity_Kernel
+NAME ?= Clarity-Kernel
 
 DATE := $(shell date "+%Y%m%d-%H%M")
 
-VER := v0.1
+VER := v0.3
 
 CODE := Mido
 
