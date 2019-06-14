@@ -61,6 +61,7 @@ on property:init.svc.qcom-post-boot=stopped
 
     # Battery
     write /sys/kernel/fast_charge/force_fast_charge 0
+    write /sys/class/power_supply/battery/allow_hvdcp3 0
     
     # I/O Scheduler
     write /sys/block/mmcblk1/queue/read_ahead_kb 128
@@ -68,6 +69,7 @@ on property:init.svc.qcom-post-boot=stopped
     # Low Memory Killer
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 0
+    write /sys/module/lowmemorykiller/parameters/debug_level 0
 
     # Disable Audio Optimizations
     write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
@@ -77,6 +79,3 @@ on property:init.svc.qcom-post-boot=stopped
 
     # Enable Qualcomm Power Gating
     write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 1
-
-    # Fsync
-    write /sys/module/sync/parameters/fysnc_enabled N
