@@ -3,9 +3,10 @@
 on init
     # set default schedTune value for foreground/top-app (EAS Only)
     write /dev/stune/background/schedtune.prefer_idle 0
-    write /dev/stune/foreground/schedtune.prefer_idle 0
+    write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/rt/schedtune.prefer_idle 0
-    write /dev/stune/top-app/schedtune.prefer_idle 0
+    write /dev/stune/top-app/schedtune.prefer_idle 1
+    write /dev/stune/top-app/schedtune.boost 10
     write /dev/stune/schedtune.prefer_idle 0
     write /dev/cpuset/background/cpus "0-7"
     write /dev/cpuset/foreground/cpus "0-7"
