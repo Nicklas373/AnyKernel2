@@ -32,11 +32,11 @@ on property:sys.boot_completed=1
 on property:init.svc.qcom-post-boot=stopped
     # CPU values
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1804800
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
-    write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
+    write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
 
     # Power Efficient Workqueue
     chmod 0644 /sys/module/workqueue/parameters/power_efficient
@@ -57,6 +57,7 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/msm_thermal/vdd_restriction/enabled 0
     write /sys/module/msm_thermal/parameters/core_limit_temp_degC 70
     write /sys/module/msm_thermal/parameters/temp_threshold 60
+    write /sys/module/msm_thermal/parameters/poll_ms 1000
 
     # Battery
     write /sys/kernel/fast_charge/force_fast_charge 0
@@ -76,3 +77,6 @@ on property:init.svc.qcom-post-boot=stopped
 
     # Enable Qualcomm Power Gating
     write /sys/module/snd_soc_wcd9335/parameters/dig_core_collapse_enable 1
+
+    # Fsync
+    write /sys/module/sync/parameters/fysnc_enabled N
