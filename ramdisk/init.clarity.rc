@@ -3,10 +3,9 @@
 on init
     # set default schedTune value for foreground/top-app (EAS Only)
     write /dev/stune/background/schedtune.prefer_idle 0
-    write /dev/stune/foreground/schedtune.prefer_idle 1
+    write /dev/stune/foreground/schedtune.prefer_idle 0
     write /dev/stune/rt/schedtune.prefer_idle 0
-    write /dev/stune/top-app/schedtune.prefer_idle 1
-    write /dev/stune/top-app/schedtune.boost 10
+    write /dev/stune/top-app/schedtune.prefer_idle 0
     write /dev/stune/schedtune.prefer_idle 0
     write /dev/cpuset/background/cpus "0-7"
     write /dev/cpuset/foreground/cpus "0-7"
@@ -33,11 +32,11 @@ on property:sys.boot_completed=1
 on property:init.svc.qcom-post-boot=stopped
     # CPU values
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1689600
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
-    write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
+    write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 
     # Power Efficient Workqueue
     chmod 0644 /sys/module/workqueue/parameters/power_efficient
