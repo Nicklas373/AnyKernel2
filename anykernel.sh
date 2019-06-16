@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Clarity Kernel for Xiaomi Redmi Note 4(X) Snapdragon
+kernel.string=Clarity Kernel for Xiaomi Redmi Note 4(x) Snapdragon
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
