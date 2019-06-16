@@ -209,11 +209,7 @@ repack_ramdisk() {
 
 # flash_boot (build, sign and write image only)
 flash_boot() {
-<<<<<<< HEAD
-  local varlist kernel ramdisk cmdline part0 part1 signfail pk8 cert avbtype;
-=======
   local varlist kernel ramdisk cmdline part0 part1 nocompflag signfail pk8 cert avbtype;
->>>>>>> 3685456911eb58a5d705375662e8e676df038249
 
   cd $split_img;
   if [ -f "$bin/mkimage" ]; then
@@ -291,14 +287,10 @@ flash_boot() {
     for i in dtb recovery_dtbo; do
       test "$(eval echo \$$i)" -a -f $i && cp -f $(eval echo \$$i) $i;
     done;
-<<<<<<< HEAD
-    $bin/magiskboot repack $bootimg $home/boot-new.img;
-=======
     case $ramdisk_compression in
       none|cpio) nocompflag="-n";;
     esac;
     $bin/magiskboot repack $nocompflag $bootimg $home/boot-new.img;
->>>>>>> 3685456911eb58a5d705375662e8e676df038249
   fi;
   if [ $? != 0 ]; then
     abort "Repacking image failed. Aborting...";
