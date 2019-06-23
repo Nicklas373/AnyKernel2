@@ -58,10 +58,6 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/msm_thermal/parameters/core_limit_temp_degC 70
     write /sys/module/msm_thermal/parameters/temp_threshold 60
     write /sys/module/msm_thermal/parameters/poll_ms 1000
-
-    # Battery
-    write /sys/kernel/fast_charge/force_fast_charge 0
-    write /sys/class/power_supply/battery/allow_hvdcp3 0
     
     # I/O Scheduler
     write /sys/block/mmcblk1/queue/read_ahead_kb 128
