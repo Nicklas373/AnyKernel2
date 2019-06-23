@@ -247,6 +247,10 @@ if [ "$supported_lvl" ]; then
   fi;
 fi;
 
+if [ "$(file_getprop /system/build.prop ro.treble.enabled)" != "true" ]; then
+  abort "Non-treble ROMs are unsupported. Aborting...";
+fi
+
 ui_print "Installing...";
 core=$($bb grep -oE 'ak.*core.sh' anykernel.sh);
 test -f tools/$core || $bb ln -s $home/tools/ak*-core.sh $home/tools/$core;
