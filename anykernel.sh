@@ -30,14 +30,6 @@ chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
 
 
-## Treble Check
-is_treble=$(file_getprop /system/build.prop "ro.treble.enabled");
-if [ ! "$is_treble" -o "$is_treble" == "false" ]; then
-  ui_print " ";
-  ui_print "This Kernel only supports Treble ROMS!";
-  exit 1;
-fi;
-
 ## AnyKernel install
 dump_boot;
 
