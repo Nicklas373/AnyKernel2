@@ -33,8 +33,8 @@ on boot
 # Execute only after boot is complete
 on property:sys.boot_completed=1
 
-   # set default schedTune value for foreground/top-app (EAS Only)
-   # Re-apply value after boot is completed
+    # set default schedTune value for foreground/top-app (EAS Only)
+    # Re-apply value after boot is completed
     write /dev/stune/background/schedtune.prefer_idle 0
     write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/schedtune.boost 0
@@ -48,15 +48,15 @@ on property:sys.boot_completed=1
     write /dev/cpuset/system-background/cpus "0-7"
     write /dev/cpuset/top-app/cpus "0-7"
 
-   # Set up CFQ I/O Scheduler
-   setprop sys.io.scheduler cfq
+    # Set up CFQ I/O Scheduler
+    setprop sys.io.scheduler cfq
 
-   # Disable slice_idle on supported block devices
-   write /sys/block/mmcblk0/queue/iosched/slice_idle 0
-   write /sys/block/mmcblk1/queue/iosched/slice_idle 0
-   write /sys/block/dm-0/queue/iosched/slice_idle 0
-   write /sys/block/dm-1/queue/iosched/slice_idle 0
-   write /sys/block/sda/queue/iosched/slice_idle 0
+    # Disable slice_idle on supported block devices
+    write /sys/block/mmcblk0/queue/iosched/slice_idle 0
+    write /sys/block/mmcblk1/queue/iosched/slice_idle 0
+    write /sys/block/dm-0/queue/iosched/slice_idle 0
+    write /sys/block/dm-1/queue/iosched/slice_idle 0
+    write /sys/block/sda/queue/iosched/slice_idle 0
 
 # Run post-boot script after Qualcomm's post_boot shell script
 on property:init.svc.qcom-post-boot=stopped
@@ -85,6 +85,9 @@ on property:init.svc.qcom-post-boot=stopped
     write /sys/module/msm_thermal/core_control/enabled 0
     chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
     write /sys/module/msm_thermal/vdd_restriction/enabled 0
+    write /sys/module/msm_thermal/parameters/core_limit_temp_degC 70
+    write /sys/module/msm_thermal/parameters/temp_threshold 60
+    write /sys/module/msm_thermal/parameters/poll_ms 1000
     
     # Battery
     write /sys/kernel/fast_charge/force_fast_charge 0
