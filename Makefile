@@ -2,7 +2,7 @@ NAME ?= Clarity-Kernel
 
 DATE := $(shell date "+%Y%m%d-%H%M")
 
-VER := v0.3-EAS
+VER := -r2-EAS
 
 CODE := Mido
 
