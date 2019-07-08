@@ -37,6 +37,7 @@ dump_boot;
 
 # init.rc
 insert_line init.rc "clarity" after 'import /init.${ro.zygote}.rc' 'import /init.clarity.rc';
+insert_line init.rc "clarity" after 'import /init.${ro.zygote}.rc' 'import /init.performance_profiles.rc';
 insert_line init.rc "spectrum" after 'import /init.clarity.rc' 'import /init.spectrum.rc';
 
 # end ramdisk changes
