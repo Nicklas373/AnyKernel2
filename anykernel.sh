@@ -28,7 +28,8 @@ ramdisk_compression=gz;
 # set permissions/ownership for included ramdisk files
 chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
-
+# set init clarity as executable script
+chmod 755 $ramdisk/init.clarity.sh;
 
 ## AnyKernel install
 dump_boot;
@@ -36,9 +37,6 @@ dump_boot;
 # begin ramdisk changes
 
 # init.rc
-insert_line init.rc "clarity" after 'import /init.${ro.zygote}.rc' 'import /init.clarity.rc';
-insert_line init.rc "clarity" after 'import /init.${ro.zygote}.rc' 'import /init.performance_profiles.rc';
-insert_line init.rc "spectrum" after 'import /init.clarity.rc' 'import /init.spectrum.rc';
 
 # end ramdisk changes
 
