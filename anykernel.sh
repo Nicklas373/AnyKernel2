@@ -26,9 +26,9 @@ ramdisk_compression=gz;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
+# set init clarity as executable script
 chmod -R 750 $ramdisk/*;
 chown -R root:root $ramdisk/*;
-# set init clarity as executable script
 chmod 755 $ramdisk/init.clarity.sh;
 
 ## AnyKernel install

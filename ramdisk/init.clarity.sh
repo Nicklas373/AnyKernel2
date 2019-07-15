@@ -38,8 +38,15 @@ write /sys/class/kgsl/kgsl-3d0/max_gpuclk 650000000
 write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
 
 # Thermal Engine
-# New thermal drivers by @TheHitman7 implemented
-# So this configuration isn't needed anymore
+chmod 0644 /sys/module/msm_thermal/parameters/enabled
+write /sys/module/msm_thermal/parameters/enabled 1
+chmod 0644 /sys/module/msm_thermal/core_control/enabled
+write /sys/module/msm_thermal/core_control/enabled 0
+chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
+write /sys/module/msm_thermal/vdd_restriction/enabled 0
+write /sys/module/msm_thermal/parameters/core_limit_temp_degC 70
+write /sys/module/msm_thermal/parameters/temp_threshold 60
+write /sys/module/msm_thermal/parameters/poll_ms 1000
 
 # Battery
 write /sys/kernel/fast_charge/force_fast_charge 0
@@ -60,9 +67,3 @@ done
 write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
 write /sys/module/process_reclaim/parameters/enable_process_reclaim 0
 write /sys/module/lowmemorykiller/parameters/debug_level 0
-
-# Misc Audio Optimizations
-write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
-write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
-write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
-write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
