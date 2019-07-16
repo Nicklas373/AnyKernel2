@@ -25,6 +25,11 @@ write /dev/stune/top-app/schedtune.prefer_idle 0
 write /dev/stune/top-app/schedtune.boost 0
 write /dev/stune/foreground/schedtune.boost 0
 write /dev/stune/schedtune.prefer_idle 0
+write /dev/cpuset/background/cpus "0-7"
+write /dev/cpuset/foreground/cpus "0-7"
+write /dev/cpuset/restricted/cpus "0-7"
+write /dev/cpuset/system-background/cpus "0-7"
+write /dev/cpuset/top-app/cpus "0-7"
 
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
