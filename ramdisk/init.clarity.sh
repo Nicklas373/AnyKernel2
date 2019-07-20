@@ -17,14 +17,28 @@ write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
 write /sys/module/workqueue/parameters/power_efficient Y
 
+# Thermal Engine
+chmod 0644 /sys/module/msm_thermal/parameters/enabled
+write /sys/module/msm_thermal/parameters/enabled 1
+chmod 0644 /sys/module/msm_thermal/core_control/enabled
+write /sys/module/msm_thermal/core_control/enabled 0
+chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
+write /sys/module/msm_thermal/vdd_restriction/enabled 0
+
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/adrenoboost 0
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 write /sys/class/kgsl/kgsl-3d0/max_gpuclk 650000000
 write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
 
-# Battery
-write /sys/class/power_supply/battery/allow_hvdcp3 0
-
-# Switch to CFQ I/O scheduler
+# Switch to BFQ I/O scheduler
 setprop sys.io.scheduler bfq
+
+# Disable slice_idle on supported block devices
+for block in mmcblk0 mmcblk1 dm-0 dm-1 sda; do
+    write /sys/block/$block/queue/iosched/slice_idle 0
+done
+
+# Set read ahead to 128 kb for external storage
+# The rest are handled by qcom-post-boot
+write /sys/block/mmcblk1/queue/read_ahead_kb 128
