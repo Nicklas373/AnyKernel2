@@ -29,7 +29,6 @@ write /sys/module/msm_thermal/vdd_restriction/enabled 0
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
 write /sys/class/kgsl/kgsl-3d0/max_gpuclk 650000000
 write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
-write /sys/class/kgsl/kgsl-3d0/max_pwrlevel 6
 
 # Switch to BFQ I/O scheduler
 setprop sys.io.scheduler bfq
