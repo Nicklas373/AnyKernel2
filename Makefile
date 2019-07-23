@@ -1,6 +1,6 @@
 NAME := Clarity-Kernel
 
-VER := r3-EAS
+VER := v1.0
 
 CODE := Mido
 
