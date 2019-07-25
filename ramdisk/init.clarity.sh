@@ -4,9 +4,6 @@
 # Allows us to get init-rc-like style
 write() { echo "$2" > "$1"; }
 
-# set default schedTune value for foreground/top-app (Syberia Prop Override)
-write /dev/stune/top-app/schedtune.boost 1
-
 # CPU Values
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
 write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
