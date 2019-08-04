@@ -119,6 +119,9 @@ setup_mountpoint /system;
 if ! is_mounted /system; then
   $bb mount -o ro -t auto /system;
 fi;
+if ! is_mounted /system_root; then
+  $bb mount -o ro -t auto /system_root;
+fi;
 ($bb mount -o ro -t auto /vendor;
 $bb mount /data) 2>/dev/null;
 if [ -f /system/system/build.prop ]; then
@@ -130,6 +133,9 @@ if [ -f /system/system/build.prop ]; then
     $bb mount -o ro -t auto /system_root 2>/dev/null || $bb mount -o ro -t auto /dev/block/bootdevice/by-name/system /system_root;
   fi;
   $bb mount -o bind /system_root/system /system;
+fi;
+if [ -f /system_root/system/build.prop -a ! -e /system ]; then
+  ln -s /system_root/system /system;
 fi;
 savedpath="$LD_LIBRARY_PATH";
 savedpre="$LD_PRELOAD";
