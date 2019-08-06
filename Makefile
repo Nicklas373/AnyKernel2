@@ -1,12 +1,10 @@
 NAME := Clarity-Kernel
 
-VER := v1.0
-
 CODE := Mido
 
-ZIP := $(NAME)-$(CODE)-$(VER).zip
+ZIP := $(NAME)-$(CODE).zip
 
-ZIP_SIGN := $(NAME)-$(CODE)-$(VER)-signed.zip
+ZIP_SIGN := $(NAME)-$(CODE)-signed.zip
 
 EXCLUDE := Makefile *.git* *.jar* *placeholder* *.md* *.pem* *.pk8* *.jar* *.sha1*
 
