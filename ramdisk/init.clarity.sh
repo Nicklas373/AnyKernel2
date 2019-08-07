@@ -18,7 +18,7 @@ write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652000
 write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 
 # SchedTune
-write /dev/stune/background/schedtune.boost -10
+write /dev/stune/background/schedtune.boost 0
 write /dev/stune/foreground/schedtune.prefer_idle 1
 write /dev/stune/top-app/schedtune.prefer_idle 1
 write /dev/stune/top-app/schedtune.boost 0
