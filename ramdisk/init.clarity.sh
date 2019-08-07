@@ -21,8 +21,7 @@ write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 write /dev/stune/background/schedtune.boost 0
 write /dev/stune/foreground/schedtune.prefer_idle 1
 write /dev/stune/top-app/schedtune.prefer_idle 1
-write /dev/stune/top-app/schedtune.boost 0
-write /dev/stune/top-app/schedtune.sched_boost 1
+write /dev/stune/top-app/schedtune.boost 1
 
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
