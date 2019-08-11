@@ -214,6 +214,11 @@ if [ "$(file_getprop /system/build.prop ro.product.name)" = "syberia_mido" ]; th
 ui_print "";
 ui_print "You're on Syberia ROM";
 ui_print "";
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
+$bb rm /vendor/etc/powerhint.json;
+$bb cp powerhint.json /vendor/etc/powerhint.json;
+$bb chmod 0644 /vendor/etc/powerhint.json;
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 ui_print "Merge custom powerhint :3";
 else
 ui_print "Not on Syberia ROM";
