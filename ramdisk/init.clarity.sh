@@ -21,7 +21,7 @@ write /dev/stune/background/schedtune.boost 0
 write /dev/stune/foreground/schedtune.prefer_idle 1
 write /dev/stune/top-app/schedtune.prefer_idle 1
 write /dev/stune/top-app/schedtune.boost 0
-write /dev/stune/top-app/schedtune.sched_boost 1
+write /dev/stune/top-app/schedtune.sched_boost 0
 
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
@@ -37,7 +37,7 @@ write /sys/module/msm_thermal/vdd_restriction/enabled 0
 write /sys/module/msm_thermal/parameters/core_limit_temp_degC 60
 write /sys/module/msm_thermal/parameters/limit_temp_degc 55
 write /sys/module/msm_thermal/parameters/temp_threshold 50
-write /sys/module/msm_thermal/parameters/poll_ms 500
+write /sys/module/msm_thermal/parameters/poll_ms 1000
 
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
