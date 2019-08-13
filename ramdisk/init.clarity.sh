@@ -15,8 +15,6 @@ for group in background foreground rt top-app; do
 # CPU Values
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
-write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 500
-write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 20000
 write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 
 # SchedTune
@@ -29,14 +27,6 @@ write /dev/stune/top-app/schedtune.sched_boost 1
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
 write /sys/module/workqueue/parameters/power_efficient Y
-
-# Thermal Engine (Intelli Thermal v3)
-chmod 0644 /sys/module/msm_thermal/parameters/enabled
-write /sys/module/msm_thermal/parameters/enabled 1
-chmod 0644 /sys/module/msm_thermal/core_control/enabled
-write /sys/module/msm_thermal/core_control/enabled 0
-chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
-write /sys/module/msm_thermal/vdd_restriction/enabled 0
 
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
