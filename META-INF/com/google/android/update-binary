@@ -216,6 +216,20 @@ if [ "$(file_getprop /system/build.prop ro.treble.enabled)" != "true" ]; then
   abort "Non-treble ROMs are unsupported. Aborting...";
 fi
 
+if [ "$(file_getprop /system/build.prop ro.product.name)" = "syberia_mido" ]; then
+ui_print "";
+ui_print "You're on Syberia ROM";
+ui_print "";
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
+$bb rm /vendor/etc/powerhint.json;
+$bb cp powerhint.json /vendor/etc/powerhint.json;
+$bb chmod 0644 /vendor/etc/powerhint.json;
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
+ui_print "Merged custom powerhint :3";
+else
+ui_print "Not on Syberia ROM";
+fi
+
 ui_print "Installing...";
 core=$($bb grep -oE 'ak.*core.sh' anykernel.sh);
 test -f tools/$core || $bb ln -s $home/tools/ak*-core.sh $home/tools/$core;
