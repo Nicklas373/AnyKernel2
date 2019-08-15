@@ -5,9 +5,7 @@
          "Path":"/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq",
          "Values":[
             "2016000",
-            "1804800",
-            "1689600",
-            "1036800"
+            "1401600"
          ],
          "DefaultIndex":0,
          "ResetOnInit":true
@@ -17,9 +15,7 @@
          "Path":"/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq",
          "Values":[
             "2016000",
-            "1689600",
             "1401600",
-            "1036800",
             "0"
          ],
          "ResetOnInit":true
@@ -29,8 +25,6 @@
          "Path":"/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
          "Values":[
             "216000000",
-            "320000000",
-            "400000000",
             "650000000"
          ],
          "ResetOnInit":true
@@ -40,7 +34,6 @@
          "Path":"/sys/class/kgsl/kgsl-3d0/devfreq/min_freq",
          "Values":[
             "400000000",
-            "320000000",
             "133300000"
          ],
          "ResetOnInit":true
@@ -87,7 +80,7 @@
          "Name":"TASchedtuneBoost",
          "Path":"/dev/stune/top-app/schedtune.boost",
          "Values":[
-            "0",
+            "10",
             "0"
          ],
          "ResetOnInit":true
@@ -143,7 +136,6 @@
          "Values":[
             "7104",
             "3221",
-            "1611",
             "769"
          ],
          "ResetOnInit":true
@@ -152,7 +144,7 @@
          "Name":"PMQoSCpuDmaLatency",
          "Path":"/dev/cpu_dma_latency",
          "Values":[
-            "44",
+            "2",
             "100"
          ],
          "HoldFd":true
@@ -161,15 +153,27 @@
    "Actions":[
       {
          "PowerHint":"SUSTAINED_PERFORMANCE",
+         "Node":"CPUClusterMaxFreq",
+         "Duration":0,
+         "Value":"1401600"
+      },
+      {
+         "PowerHint":"SUSTAINED_PERFORMANCE",
          "Node":"GPUMaxFreq",
          "Duration":0,
-         "Value":"320000000"
+         "Value":"216000000"
+      },
+      {
+         "PowerHint":"INTERACTION",
+         "Node":"CPUClusterMinFreq",
+         "Duration":0,
+         "Value":"1401600"
       },
       {
          "PowerHint":"INTERACTION",
          "Node":"TASchedtuneBoost",
          "Duration":0,
-         "Value":"0"
+         "Value":"10"
       },
       {
          "PowerHint":"INTERACTION",
@@ -205,7 +209,7 @@
          "PowerHint":"LAUNCH",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":5000,
-         "Value":"44"
+         "Value":"2"
       },
       {
          "PowerHint":"LAUNCH",
@@ -265,7 +269,7 @@
          "PowerHint":"CAMERA_LAUNCH",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":1000,
-         "Value":"44"
+         "Value":"2"
       },
       {
          "PowerHint":"CAMERA_STREAMING",
@@ -295,19 +299,19 @@
          "PowerHint":"CAMERA_SHOT",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":1000,
-         "Value":"44"
+         "Value":"2"
       },
       {
          "PowerHint":"AUDIO_STREAMING",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":2000,
-         "Value":"44"
+         "Value":"2"
       },
       {
          "PowerHint":"AUDIO_LOW_LATENCY",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":0,
-         "Value":"44"
+         "Value":"2"
       },
       {
          "PowerHint":"EXPENSIVE_RENDERING",
