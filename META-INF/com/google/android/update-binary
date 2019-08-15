@@ -221,7 +221,7 @@ ui_print "";
 ui_print "You're on Syberia ROM";
 ui_print "";
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
-$bb rm /vendor/etc/powerhint.json;
+$bb mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
 $bb cp powerhint.json /vendor/etc/powerhint.json;
 $bb chmod 0644 /vendor/etc/powerhint.json;
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
