@@ -1,6 +1,6 @@
 {
 	"Nodes": [
-	    {
+		{
 			"Name": "CPUClusterMaxFreq",
 			"Path": "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq",
 			"Values": [
@@ -146,7 +146,7 @@
 		}
 	],
 	"Actions": [
-	    {
+	    	{
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "CPUClusterMaxFreq",
 			"Duration": 0,
@@ -159,7 +159,7 @@
 			"Value": "216000000"
 		},
 		{
-			"PowerHint": "SUSTAINED_PERFORMANCE",
+			"PowerHint": "INTERACTION",
 			"Node": "CPUClusterMinFreq",
 			"Duration": 0,
 			"Value": "652800"
