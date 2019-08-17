@@ -147,7 +147,7 @@
    ],
    "Actions":[
       {
-	 "PowerHunt":"SUSTAINED_PERFORMANCE",
+	 "PowerHint":"SUSTAINED_PERFORMANCE",
 	 "Node":"CPUClusterMaxFreq",
 	 "Duration":0,
 	 "Value":"652800"
