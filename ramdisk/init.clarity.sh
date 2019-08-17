@@ -15,6 +15,7 @@ for group in background foreground rt top-app; do
 # CPU Values
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2016000
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 652800
+write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 0
 
 # SchedTune for top-app only
 write /dev/stune/top-app/schedtune.sched_boost 1
