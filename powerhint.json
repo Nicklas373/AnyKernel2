@@ -5,7 +5,6 @@
 			"Path": "/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq",
 			"Values": [
 				"2016000",
-				"1804800",
 				"1689600",
 				"1036800"
 			],
@@ -17,7 +16,6 @@
 			"Path": "/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq",
 			"Values": [
 				"2016000",
-				"1689600",
 				"1401600",
 				"1036800",
 				"0"
@@ -150,7 +148,7 @@
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "CPUClusterMaxFreq",
 			"Duration": 0,
-			"Value": "652800"
+			"Value": "2016000"
 		},
 		{
 			"PowerHint": "SUSTAINED_PERFORMANCE",
@@ -162,7 +160,7 @@
 			"PowerHint": "INTERACTION",
 			"Node": "CPUClusterMinFreq",
 			"Duration": 0,
-			"Value": "652800"
+			"Value": "1036800"
 		},
 		{
 			"PowerHint": "INTERACTION",
@@ -192,7 +190,7 @@
 			"PowerHint": "LAUNCH",
 			"Node": "CPUClusterMinFreq",
 			"Duration": 5000,
-			"Value": "2016000"
+			"Value": "1036800"
 		},
 		{
 			"PowerHint": "LAUNCH",
