@@ -149,7 +149,7 @@
       {
 	 "PowerHunt":"SUSTAINED_PERFORMANCE",
 	 "Node":"CPUClusterMaxFreq",
-	 "Duration":"0"
+	 "Duration":0,
 	 "Value":"652800"
       },
       {
