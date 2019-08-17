@@ -150,7 +150,7 @@
 			"Duration": 0,
 			"Value": "2016000"
 		},
-  {
+		{
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "CPUClusterMinFreq",
 			"Duration": 0,
@@ -162,7 +162,7 @@
 			"Duration": 0,
 			"Value": "216000000"
 		},
-  	{
+		{
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "GPUMinFreq",
 			"Duration": 0,
