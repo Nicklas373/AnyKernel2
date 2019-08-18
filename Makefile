@@ -15,5 +15,3 @@ $(ZIP):
 	@zip -r9 "$@" . -x $(EXCLUDE)
 	@java -jar signapk.jar signature-key.Nicklas@XDA.x509.pem signature-key.Nicklas@XDA.pk8 $(ZIP) $(ZIP_SIGN)
 	@echo "Done."
-	@rm $(ZIP)
-	@mv $(ZIP_SIGN) $(HOME)
