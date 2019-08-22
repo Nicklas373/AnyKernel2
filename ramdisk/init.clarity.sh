@@ -12,9 +12,6 @@ for group in background foreground rt top-app; do
          chmod 0644 /dev/stune/$group/*
     done
 
-# CPU Values
-write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 0
-
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
 write /sys/module/workqueue/parameters/power_efficient Y
