@@ -47,17 +47,6 @@
 			"ResetOnInit": true
 		},
 		{
-			"Name": "GPUBusMinFreq",
-			"Path": "/sys/class/devfreq/soc:qcom,gpubw/min_freq",
-			"Values": [
-				"7104",
-				"6445",
-				"5859",
-				"0"
-			],
-			"ResetOnInit": true
-		},
-		{
 			"Name": "GPUForceRailOn",
 			"Path": "/sys/class/kgsl/kgsl-3d0/force_rail_on",
 			"Values": [
@@ -108,24 +97,6 @@
 			"Values": [
 				"0",
 				"10"
-			],
-			"ResetOnInit": true
-		},
-		{
-			"Name": "CPUBWSampleMs",
-			"Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms",
-			"Values": [
-				"10",
-				"4"
-			],
-			"ResetOnInit": true
-		},
-		{
-			"Name": "CPUBWIOPercent",
-			"Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent",
-			"Values": [
-				"80",
-				"40"
 			],
 			"ResetOnInit": true
 		},
@@ -281,18 +252,6 @@
 			"Node": "PMQoSCpuDmaLatency",
 			"Duration": 1000,
 			"Value": "2"
-		},
-		{
-			"PowerHint": "CAMERA_STREAMING",
-			"Node": "CPUBWSampleMs",
-			"Duration": 0,
-			"Value": "10"
-		},
-		{
-			"PowerHint": "CAMERA_STREAMING",
-			"Node": "CPUBWIOPercent",
-			"Duration": 0,
-			"Value": "80"
 		},
 		{
 			"PowerHint": "CAMERA_SHOT",
