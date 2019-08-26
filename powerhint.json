@@ -33,6 +33,8 @@
 			"Path": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
 			"Values": [
 				"216000000",
+				"320000000",
+				"400000000",
 				"650000000"
 			],
 			"ResetOnInit": true
@@ -42,7 +44,19 @@
 			"Path": "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq",
 			"Values": [
 				"400000000",
+				"320000000",
 				"133300000"
+			],
+			"ResetOnInit": true
+		},
+		{
+			"Name": "GPUBusMinFreq",
+			"Path": "/sys/class/devfreq/soc:qcom,gpubw/min_freq",
+			"Values": [
+				"7104",
+				"6445",
+				"5859",
+				"0"
 			],
 			"ResetOnInit": true
 		},
@@ -101,11 +115,30 @@
 			"ResetOnInit": true
 		},
 		{
+			"Name": "CPUBWSampleMs",
+			"Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms",
+			"Values": [
+				"10",
+				"4"
+			],
+			"ResetOnInit": true
+		},
+		{
+			"Name": "CPUBWIOPercent",
+			"Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent",
+			"Values": [
+				"80",
+				"40"
+			],
+			"ResetOnInit": true
+		},
+		{
 			"Name": "CPUBWMinFreq",
 			"Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq",
 			"Values": [
 				"7104",
 				"3221",
+				"1611",
 				"769"
 			],
 			"ResetOnInit": true
@@ -137,19 +170,13 @@
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "GPUMaxFreq",
 			"Duration": 0,
-			"Value": "216000000"
+			"Value": "320000000"
 		},
 		{
 			"PowerHint": "SUSTAINED_PERFORMANCE",
 			"Node": "GPUMinFreq",
 			"Duration": 0,
 			"Value": "133300000"
-		},
-		{
-			"PowerHint": "INTERACTION",
-			"Node": "CPUClusterMaxFreq",
-			"Duration": 0,
-			"Value": "2016000"
 		},
 		{
 			"PowerHint": "INTERACTION",
@@ -254,6 +281,18 @@
 			"Value": "2"
 		},
 		{
+			"PowerHint": "CAMERA_STREAMING",
+			"Node": "CPUBWSampleMs",
+			"Duration": 0,
+			"Value": "10"
+		},
+		{
+			"PowerHint": "CAMERA_STREAMING",
+			"Node": "CPUBWIOPercent",
+			"Duration": 0,
+			"Value": "80"
+		},
+		{
 			"PowerHint": "CAMERA_SHOT",
 			"Node": "CPUClusterMaxFreq",
 			"Duration": 1000,
@@ -297,3 +336,4 @@
 		}
 	]
 }
+
