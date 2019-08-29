@@ -255,6 +255,7 @@ $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 ui_print "Merged custom powerhint :3";
 else
 ui_print "Not on Syberia ROM";
+ui_print "Custom Powerhint Only For Syberia ROM"
 fi
 
 ui_print "Installing...";
