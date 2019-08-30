@@ -6,7 +6,7 @@ ZIP := $(NAME)-$(CODE).zip
 
 ZIP_SIGN := $(NAME)-$(CODE)-signed.zip
 
-EXCLUDE := Makefile *.git* *.jar* *placeholder* *.md* *.pem* *.pk8* *.jar* *.sha1*
+EXCLUDE := Makefile LICENSE *.git* *.jar* *placeholder* *.md* *.pem* *.pk8* *.jar* *.sha1*
 
 normal: $(ZIP)
 
