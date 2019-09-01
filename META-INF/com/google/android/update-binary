@@ -246,26 +246,29 @@ fi
 ui_print "Detecting your ROM...";
 
 if [ "$(file_getprop /system/build.prop ro.product.name)" = "syberia_mido" ]; then
-ui_print "You're on Syberia ROM";
+ui_print "------------------------------";
+ui_print "|   You're on Syberia ROM    |";
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 $bb mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
 $bb cp powerhint.json /vendor/etc/powerhint.json;
 $bb chmod 0644 /vendor/etc/powerhint.json;
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "Installing custom powerhint";
-ui_print "By alvian wahyu humaini";
+ui_print "| Installing custom powerhint |";
+ui_print "|   By Alvian Wahyu Humaini   |";
+ui_print "-------------------------------";
 elif [ "$(file_getprop /system/build.prop ro.product.name)" = "aosmp_mido" ]; then
-ui_print "You're on AOSMP ROM";
+ui_print "------------------------------";
+ui_print "|    You're on AOSMP ROM      |";
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 $bb mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
 $bb cp powerhint.json /vendor/etc/powerhint.json;
 $bb chmod 0644 /vendor/etc/powerhint.json;
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "Installing custom powerhint";
-ui_print "By alvian wahyu humaini";
+ui_print "| Installing custom powerhint |";
+ui_print "|   By Alvian Wahyu Humaini   |";
+ui_print "-------------------------------";
 else
-ui_print "Not On My List EAS Based ROM";
-ui_print "Custom Powerhint Only For My Listed EAS Based ROM";
+ui_print "Not On My List For EAS Based ROM";
 fi
 
 ui_print "Installing...";
