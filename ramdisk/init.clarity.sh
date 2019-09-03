@@ -14,16 +14,9 @@ for group in background foreground rt top-app; do
 
 # CPU Values
 write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 0
-write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 9000
-write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 500
+write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 4500
+write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 200
 write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
-
-# SchedTune
-write /dev/stune/background/schedtune.boost 0
-write /dev/stune/foreground/schedtune.prefer_idle 1
-write /dev/stune/top-app/schedtune.prefer_idle 1
-write /dev/stune/top-app/schedtune.boost 0
-write /dev/stune/top-app/schedtune.sched_boost 1
 
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
