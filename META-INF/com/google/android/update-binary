@@ -246,8 +246,8 @@ fi
 ui_print "Detecting your ROM...";
 
 if [ "$(file_getprop /system/build.prop ro.product.name)" = "syberia_mido" ]; then
-ui_print "------------------------------";
-ui_print "|   You're on Syberia ROM    |";
+ui_print "-------------------------------";
+ui_print "|   You're on Syberia ROM     |";
 $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 $bb mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
 $bb cp powerhint.json /vendor/etc/powerhint.json;
