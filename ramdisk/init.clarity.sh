@@ -18,6 +18,9 @@ write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 4500
 write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 200
 write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
 
+# SchedTune
+write /dev/stune/top-app/schedtune.boost 0
+
 # Power Efficient Workqueue
 chmod 0644 /sys/module/workqueue/parameters/power_efficient
 write /sys/module/workqueue/parameters/power_efficient Y
