@@ -48,6 +48,9 @@ done
 write /sys/block/mmcblk0/queue/read_ahead_kb 128
 write /sys/block/mmcblk1/queue/read_ahead_kb 512
 
+# Battery
+write /sys/module/fast_charge/force_fast_charge 1
+
 # Low Memory Killer
 write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
 write /sys/module/process_reclaim/parameters/enable_process_reclaim 0
