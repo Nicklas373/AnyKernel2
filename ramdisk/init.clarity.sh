@@ -36,7 +36,6 @@ write /sys/block/mmcblk0/queue/scheduler cfq
 write /sys/block/mmcblk1/queue/scheduler cfq
 
 # Battery
-write /sys/kernel/fast_charge/force_fast_charge 0
 write /sys/class/power_supply/battery/allow_hvdcp3 0
 
 # Disable slice_idle on supported block devices
@@ -47,9 +46,6 @@ done
 # Set read ahead to 128 kb for internal & 512kb for storage
 write /sys/block/mmcblk0/queue/read_ahead_kb 128
 write /sys/block/mmcblk1/queue/read_ahead_kb 512
-
-# Battery
-write /sys/module/fast_charge/force_fast_charge 1
 
 # Low Memory Killer
 write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
