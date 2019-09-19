@@ -58,4 +58,7 @@ write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
 write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
 
+# Misc Optimizations
+write /sys/kernel/sched/arch_power 1
+
 fi
