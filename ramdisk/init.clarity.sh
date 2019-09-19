@@ -36,6 +36,7 @@ write /sys/block/mmcblk0/queue/scheduler cfq
 write /sys/block/mmcblk1/queue/scheduler cfq
 
 # Battery
+write /sys/kernel/fast_charge/force_fast_charge 0
 write /sys/class/power_supply/battery/allow_hvdcp3 0
 
 # Disable slice_idle on supported block devices
@@ -57,8 +58,5 @@ write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
 write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
-
-# Misc Optimizations
-write /sys/kernel/sched/arch_power 1
 
 fi
