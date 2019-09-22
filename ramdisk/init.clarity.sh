@@ -19,7 +19,7 @@ write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
 write /dev/stune/top-app/schedtune.boost 0
 
 # Power Efficient Workqueue
-chmod 0644 /sys/module/workqueue/parameters/power_efficient
+chmod 0444 /sys/module/workqueue/parameters/power_efficient
 write /sys/module/workqueue/parameters/power_efficient Y
 
 # GPU Values
