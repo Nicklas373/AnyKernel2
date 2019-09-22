@@ -4,9 +4,6 @@
 # Allows us to get init-rc-like style
 write() { echo "$2" > "$1"; }
 
-# Only apply this when boot is completed
-if [[ $(getprop sys.boot_completed) -eq 1 ]]; then
-
 # SchedTune Permissions
 for group in background foreground rt top-app; do
          chmod 0644 /dev/stune/$group/*
@@ -35,10 +32,6 @@ write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 133330000
 write /sys/block/mmcblk0/queue/scheduler cfq
 write /sys/block/mmcblk1/queue/scheduler cfq
 
-# Battery
-write /sys/kernel/fast_charge/force_fast_charge 0
-write /sys/class/power_supply/battery/allow_hvdcp3 0
-
 # Disable slice_idle on supported block devices
 for block in mmcblk0 mmcblk1 dm-0 dm-1 sda; do
     write /sys/block/$block/queue/iosched/slice_idle 0
@@ -59,4 +52,3 @@ write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
 write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
 
-fi
