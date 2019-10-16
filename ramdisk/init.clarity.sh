@@ -9,18 +9,20 @@ for group in background foreground rt top-app; do
          chmod 0644 /dev/stune/$group/*
     done
 
-# CPU Values
-write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 0
-write /sys/devices/system/cpu/cpufreq/schedutil/up_rate_limit_us 20000
-write /sys/devices/system/cpu/cpufreq/schedutil/down_rate_limit_us 500
-write /sys/devices/system/cpu/cpufreq/schedutil/iowait_boost_enable 1
-
 # SchedTune
 write /dev/stune/top-app/schedtune.boost 0
 
-# Power Efficient Workqueue
-chmod 0444 /sys/module/workqueue/parameters/power_efficient
-write /sys/module/workqueue/parameters/power_efficient Y
+# Thermal Engine (Intelli Thermal v3)
+chmod 0644 /sys/module/msm_thermal/parameters/enabled
+write /sys/module/msm_thermal/parameters/enabled 1
+chmod 0644 /sys/module/msm_thermal/core_control/enabled
+write /sys/module/msm_thermal/core_control/enabled 0
+chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
+write /sys/module/msm_thermal/vdd_restriction/enabled 0
+write /sys/module/msm_thermal/parameters/core_limit_temp_degC 60
+write /sys/module/msm_thermal/parameters/limit_temp_degc 55
+write /sys/module/msm_thermal/parameters/temp_threshold 50
+write /sys/module/msm_thermal/parameters/poll_ms 500
 
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
@@ -51,4 +53,3 @@ write /sys/module/snd_soc_wcd9330/parameters/high_perf_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/huwifi_mode 0
 write /sys/module/snd_soc_wcd9335/parameters/low_distort_amp 0
 write /sys/module/snd_soc_wcd9xxx/parameters/impedance_detect_en 0
-
