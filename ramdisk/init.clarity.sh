@@ -20,9 +20,9 @@ write /sys/module/msm_thermal/core_control/enabled 0
 chmod 0644 /sys/module/msm_thermal/vdd_restriction/enabled
 write /sys/module/msm_thermal/vdd_restriction/enabled 0
 write /sys/module/msm_thermal/parameters/core_limit_temp_degC 60
-write /sys/module/msm_thermal/parameters/limit_temp_degc 55
-write /sys/module/msm_thermal/parameters/temp_threshold 50
-write /sys/module/msm_thermal/parameters/poll_ms 500
+write /sys/module/msm_thermal/parameters/limit_temp_degc 60
+write /sys/module/msm_thermal/parameters/temp_threshold 55
+write /sys/module/msm_thermal/parameters/poll_ms 1000
 
 # GPU Values
 write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
