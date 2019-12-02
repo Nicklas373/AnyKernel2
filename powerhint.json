@@ -5,8 +5,6 @@
          "Path":"/sys/devices/system/cpu/cpu2/cpufreq/scaling_max_freq",
          "Values":[
             "2016000",
-            "1958400",
-            "1689600",
             "1036800"
          ],
          "DefaultIndex":0,
@@ -16,8 +14,7 @@
          "Name":"CPUClusterMinFreq",
          "Path":"/sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq",
          "Values":[
-            "1804800",
-            "1401600",
+            "2016000",
             "1036800",
             "652800",
             "0"
@@ -29,8 +26,6 @@
          "Path":"/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
          "Values":[
             "216000000",
-            "320000000",
-            "400000000",
             "650000000"
          ],
          "ResetOnInit":true
@@ -40,21 +35,9 @@
          "Path":"/sys/class/kgsl/kgsl-3d0/devfreq/min_freq",
          "Values":[
             "400000000",
-            "320000000",
             "133300000"
          ],
          "ResetOnInit":true
-      },
-      {
-         "Name": "GPUBusMinFreq",
-         "Path": "/sys/class/devfreq/soc:qcom,gpubw/min_freq",
-         "Values": [
-            "7104",
-            "6445",
-            "5859",
-            "0"
-         ],
-         "ResetOnInit": true
       },
       {
          "Name":"GPUForceRailOn",
@@ -111,31 +94,11 @@
          "ResetOnInit":true
       },
       {
-          "Name": "CPUBWSampleMs",
-          "Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms",
-          "Values": [
-            "10",
-            "4"
-         ],
-         "ResetOnInit": true
-      },
-      {
-          "Name": "CPUBWIOPercent",
-          "Path": "/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent",
-          "Values": [
-            "80",
-            "40"
-         ],
-         "ResetOnInit": true
-      },
-      {
           "Name":"CPUBWMinFreq",
           "Path":"/sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq",
           "Values":[
             "7104",
             "3221",
-            "2124",
-            "1611",
             "769"
          ],
          "ResetOnInit":true
@@ -209,7 +172,7 @@
          "PowerHint":"LAUNCH",
          "Node":"CPUClusterMinFreq",
          "Duration":5000,
-         "Value":"1036800"
+         "Value":"2016000"
       },
       {
          "PowerHint":"LAUNCH",
@@ -269,25 +232,13 @@
          "PowerHint":"CAMERA_LAUNCH",
          "Node":"CPUClusterMinFreq",
          "Duration":1000,
-         "Value":"1036800"
+         "Value":"2016000"
       },
       {
          "PowerHint":"CAMERA_LAUNCH",
          "Node":"PMQoSCpuDmaLatency",
          "Duration":1000,
          "Value":"2"
-      },
-      {
-         "PowerHint": "CAMERA_STREAMING",
-         "Node": "CPUBWSampleMs",
-         "Duration": 0,
-         "Value": "10"
-      },
-      {
-         "PowerHint": "CAMERA_STREAMING",
-         "Node": "CPUBWIOPercent",
-         "Duration": 0,
-         "Value": "80"
       },
       {
          "PowerHint":"CAMERA_SHOT",
@@ -299,7 +250,7 @@
          "PowerHint":"CAMERA_SHOT",
          "Node":"CPUClusterMinFreq",
          "Duration":1000,
-         "Value":"1036800"
+         "Value":"2016000"
       },
       {
          "PowerHint":"CAMERA_SHOT",
