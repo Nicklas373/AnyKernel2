@@ -5,7 +5,7 @@
 write() { echo "$2" > "$1"; }
 
 # SchedTune Permissions
-for group in background foreground rt top-app; do
+for group in background foreground rt top-app audio-app; do
          chmod 0644 /dev/stune/$group/*
     done
 
