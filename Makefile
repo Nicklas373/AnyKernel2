@@ -13,8 +13,3 @@ $(ZIP):
 	@zip -r9 "$@" . -x $(EXCLUDE)
 	@echo "Done."
 
-clean:
-	@rm -vf *.zip*
-	@rm -vf kernel/*.gz
-	@rm -vf dtbs/*.dtb
-	@echo "Done."
