@@ -318,11 +318,11 @@ $bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 ui_print "| Installing custom powerhint |";
 ui_print "|   By Alvian Wahyu Humaini   |";
 ui_print "-------------------------------";
+else
 ui_print "Nah, nevermind :3";
 fi
 
 ui_print "Installing...";
-
 core=$($bb grep -oE 'ak.*core.sh' anykernel.sh);
 test -f tools/$core || $bb ln -s $home/tools/ak*-core.sh $home/tools/$core;
 PATH="$home/bin:$PATH" home=$home $bb ash anykernel.sh $2;
