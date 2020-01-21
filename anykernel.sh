@@ -7,6 +7,7 @@ properties() { '
 kernel.string=Clarity Kernel for Xiaomi Redmi Note 7
 do.devicecheck=1
 do.modules=0
+do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=lavender
