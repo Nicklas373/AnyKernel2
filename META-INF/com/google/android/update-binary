@@ -329,7 +329,11 @@ if [ "$(file_getprop /system/build.prop ro.treble.enabled)" != "true" ]; then
 fi
 
 ui_print "Misc checking :3 ...";
-ui_print "";
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
+$bb mv /vendor/etc/thermal-engine.conf /mnt/sdcard/thermal-engine.conf;
+$bb cp thermal-engine.conf /vendor/etc/thermal-engine.conf;
+$bb chmod 0644 /vendor/etc/thermal-engine.conf;
+$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
 if [ "$(file_getprop /system/build.prop ro.du.version)" = "DureX-EAS-10-mido-20200117-0437" ]; then
 ui_print "-------------------------------";
 ui_print "|   You're on DureX EAS ROM   |";
