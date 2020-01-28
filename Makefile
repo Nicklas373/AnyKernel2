@@ -1,4 +1,4 @@
-NAME := Clarity-Kernel
+NAME := Fusion-Kernel
 
 CODE := Lavender
 
