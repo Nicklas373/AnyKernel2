@@ -278,11 +278,11 @@ do_levelcheck() {
   fi;
 }
 do_thermalchange() {
-$bb mount -o rw,remount -t auto /vendor 2>/dev/null;
-$bb mv /vendor/etc/thermal-engine.conf /mnt/sdcard/thermal-engine.conf;
-$bb cp thermal-engine.conf /vendor/etc/thermal-engine.conf;
-$bb chmod 0644 /vendor/etc/thermal-engine.conf;
-$bb mount -o rw,remount -t auto /vendor 2>/dev/null
+$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
+$BB mv /vendor/etc/thermal-engine.conf /mnt/sdcard/thermal-engine.conf;
+$BB cp thermal-engine.conf /vendor/etc/thermal-engine.conf;
+$BB chmod 0644 /vendor/etc/thermal-engine.conf;
+$BB mount -o rw,remount -t auto /vendor 2>/dev/null
 }
 do_powerhintchange() {
 ui_print "Misc checking :3 ...";
