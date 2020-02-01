@@ -293,7 +293,7 @@ $BB mount -o rw,remount -t auto /vendor 2>/dev/null
 do_powerhintchange() {
 ui_print "Misc checking :3 ...";
 ui_print "";
-if [ "$(file_getprop /system/build.prop ro.du.version)" = "DureX-EAS-10-mido-20200117-0437" ]; then
+if [ "$(file_getprop /system/build.prop ro.du.version)" = "DureX-EAS-10-mido-20200131-1223" ]; then
 ui_print "-------------------------------";
 ui_print "|   You're on DureX EAS ROM   |";
 $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
