@@ -32,7 +32,7 @@ setup_mountpoint() {
   test -L $1 && $BB mv -f $1 ${1}_link;
   if [ ! -d $1 ]; then
     rm -f $1;
-    mkdir $1;
+    mkdir -p $1;
   fi;
 }
 is_mounted() { $BB mount | $BB grep -q " $1 "; }
@@ -70,7 +70,7 @@ mount_apex() {
   done;
   export ANDROID_RUNTIME_ROOT=/apex/com.android.runtime;
   export ANDROID_TZDATA_ROOT=/apex/com.android.tzdata;
-  export BOOTCLASSPATH=/apex/com.android.runtime/javalib/core-oj.jar:/apex/com.android.runtime/javalib/core-libart.jar:/apex/com.android.runtime/javalib/okhttp.jar:/apex/com.android.runtime/javalib/bouncycastle.jar:/apex/com.android.runtime/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/android.test.base.jar:/apex/com.android.conscrypt/javalib/conscrypt.jar:/apex/com.android.media/javalib/updatable-media.jar;
+  export BOOTCLASSPATH=/apex/com.android.runtime/javalib/core-oj.jar:/apex/com.android.runtime/javalib/core-libart.jar:/apex/com.android.runtime/javalib/okhttp.jar:/apex/com.android.runtime/javalib/bouncycastle.jar:/apex/com.android.runtime/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/android.test.base.jar:/system/framework/telephony-ext.jar:/apex/com.android.conscrypt/javalib/conscrypt.jar:/apex/com.android.media/javalib/updatable-media.jar;
 }
 umount_apex() {
   test -d /apex || return 1;
@@ -125,11 +125,13 @@ mount_all() {
 umount_all() {
   (if ! $BOOTMODE; then
     umount_apex;
-    $BB umount /system;
-    $BB umount -l /system;
-    if [ -e /system_root ]; then
-      $BB umount /system_root;
-      $BB umount -l /system_root;
+    if [ ! -d /postinstall/tmp ]; then
+      $BB umount /system;
+      $BB umount -l /system;
+      if [ -e /system_root ]; then
+        $BB umount /system_root;
+        $BB umount -l /system_root;
+      fi;
     fi;
   fi;
   umount /vendor;
@@ -145,7 +147,8 @@ setup_env() {
   mount_all;
   OLD_LD_PATH=$LD_LIBRARY_PATH;
   OLD_LD_PRE=$LD_PRELOAD;
-  unset LD_LIBRARY_PATH LD_PRELOAD;
+  OLD_LD_CFG=$LD_CONFIG_FILE;
+  unset LD_LIBRARY_PATH LD_PRELOAD LD_CONFIG_FILE;
   if [ ! "$(getprop 2>/dev/null)" ]; then
     getprop() {
       local propdir propfile propval;
@@ -167,6 +170,7 @@ restore_env() {
   unset -f getprop;
   test "$OLD_LD_PATH" && export LD_LIBRARY_PATH=$OLD_LD_PATH;
   test "$OLD_LD_PRE" && export LD_PRELOAD=$OLD_LD_PRE;
+  test "$OLD_LD_CFG" && export LD_CONFIG_FILE=$OLD_LD_CFG;
   umount_all;
   (for dir in /apex /system /system_root; do
     if [ -L "${dir}_link" ]; then
