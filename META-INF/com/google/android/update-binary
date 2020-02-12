@@ -295,20 +295,19 @@ $BB chmod 0644 /vendor/etc/thermal-engine.conf;
 $BB mount -o rw,remount -t auto /vendor 2>/dev/null
 }
 do_powerhintchange() {
-POWERHINT="/vendor/etc/powerhint.json"
+POWERHINT=/vendor/etc/powerhint.json
 ui_print "Misc checking :3 ...";
 $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-if [ -a $POWERHINT ]; then
-ui_print "Nah, nevermind :3"
-else
-$BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
-$BB cp powerhint.json /vendor/etc/powerhint.json;
-$BB chmod 0644 /vendor/etc/powerhint.json;
+if [ -f "$POWERHINT" ]; then
 ui_print "-------------------------------";
-$BB umount /vendor;
 ui_print "| Installing custom powerhint |";
 ui_print "|   By Alvian Wahyu Humaini   |";
 ui_print "-------------------------------";
+$BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
+$BB cp powerhint.json /vendor/etc/powerhint.json;
+$BB chmod 0644 /vendor/etc/powerhint.json;
+else
+ui_print "Nah, nevermind :3"
 fi
 }
 dump_moduleinfo() {
