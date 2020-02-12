@@ -313,42 +313,19 @@ $BB chmod 0644 /vendor/etc/thermal-engine.conf;
 $BB mount -o rw,remount -t auto /vendor 2>/dev/null;
 }
 do_powerhintcheck() {
-ui_print "Detecting your ROM...";
-if [ "$(file_getprop /system/build.prop ro.product.name)" = "syberia_mido" ]; then
+POWERHINT=/vendor/etc/powerhint.json
+ui_print "Misc checking :3 ...";
+$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
+if [ -f "$POWERHINT" ]; then
 ui_print "-------------------------------";
-ui_print "|   You're on Syberia ROM     |";
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-$BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
-$BB cp powerhint.json /vendor/etc/powerhint.json;
-$BB chmod 0644 /vendor/etc/powerhint.json;
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
 ui_print "| Installing custom powerhint |";
 ui_print "|   By Alvian Wahyu Humaini   |";
 ui_print "-------------------------------";
-elif [ "$(file_getprop /system/build.prop ro.product.name)" = "aosmp_mido" ]; then
-ui_print "-------------------------------";
-ui_print "|    You're on AOSMP ROM      |";
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
 $BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
 $BB cp powerhint.json /vendor/etc/powerhint.json;
 $BB chmod 0644 /vendor/etc/powerhint.json;
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "| Installing custom powerhint |";
-ui_print "|   By Alvian Wahyu Humaini   |";
-ui_print "-------------------------------";
-elif [ "$(file_getprop /system/build.prop ro.product.name)" = "liquid_mido" ]; then
-ui_print "-------------------------------";
-ui_print "|  You're on Liquid Remix ROM |";
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-$BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
-$BB cp powerhint.json /vendor/etc/powerhint.json;
-$BB chmod 0644 /vendor/etc/powerhint.json;
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-ui_print "| Installing custom powerhint |";
-ui_print "|   By Alvian Wahyu Humaini   |";
-ui_print "-------------------------------";
 else
-ui_print "Not On My List For EAS Based ROM";
+ui_print "Nah, nevermind :3"
 fi
 }
 do_modules() {
