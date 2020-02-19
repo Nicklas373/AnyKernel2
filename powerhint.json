@@ -281,6 +281,12 @@
          "Node":"GPUMaxFreq",
          "Duration":0,
          "Value":"650000000"
+      },
+      {
+         "PowerHint": "TPU_BOOST",
+         "Node": "PMQoSCpuDmaLatency",
+         "Duration": 2000,
+         "Value": "2"
       }
    ]
 }

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+AK3_Upstream(){
+git fetch https://github.com/osm0sis/AnyKernel3 master
+git merge --log FETCH_HEAD
+}
+
+# Upstream android pie branch
+git checkout mido
+AK3_Upstream
+git push origin mido
+
+# Upstream android q branch
+git checkout mido-10
+AK3_Upstream
+git push origin mido-10
+
+# Upstream caf branch
+git checkout caf/mido
+AK3_Upstream
+git push origin caf/mido
