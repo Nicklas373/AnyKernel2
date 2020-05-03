@@ -287,29 +287,6 @@ do_levelcheck() {
     abort " " "Unsupported Android security patch level. Aborting...";
   fi;
 }
-do_thermalchange() {
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-$BB mv /vendor/etc/thermal-engine.conf /mnt/sdcard/thermal-engine.conf;
-$BB cp thermal-engine.conf /vendor/etc/thermal-engine.conf;
-$BB chmod 0644 /vendor/etc/thermal-engine.conf;
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null
-}
-do_powerhintchange() {
-POWERHINT=/vendor/etc/powerhint.json
-ui_print "Misc checking :3 ...";
-$BB mount -o rw,remount -t auto /vendor 2>/dev/null;
-if [ -f "$POWERHINT" ]; then
-ui_print "-------------------------------";
-ui_print "| Installing custom powerhint |";
-ui_print "|   By Alvian Wahyu Humaini   |";
-ui_print "-------------------------------";
-$BB mv /vendor/etc/powerhint.json /mnt/sdcard/powerhint.json;
-$BB cp powerhint.json /vendor/etc/powerhint.json;
-$BB chmod 0644 /vendor/etc/powerhint.json;
-else
-ui_print "Nah, nevermind :3"
-fi
-}
 dump_moduleinfo() {
 cat <<EOF > $1;
 name=AK3 Helper Module
@@ -435,8 +412,6 @@ do_treblecheck;
 do_devicecheck;
 do_versioncheck;
 do_levelcheck;
-do_thermalchange;
-do_powerhintchange;
 
 ui_print "Installing...";
 CORE=$($BB grep -oE 'ak.*core.sh' anykernel.sh);

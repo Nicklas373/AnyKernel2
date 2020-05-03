@@ -1,4 +1,4 @@
-NAME := Clarity-Kernel
+NAME := Kizuna-Kernel-4.9
 
 CODE := Mido
 
