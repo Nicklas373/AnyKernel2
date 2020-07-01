@@ -19,6 +19,7 @@ supported.patchlevels=
 block=/dev/block/platform/soc/7824900.sdhci/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
+no_block_display=true;
 
 
 ## AnyKernel methods (DO NOT CHANGE)
