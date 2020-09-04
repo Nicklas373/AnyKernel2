@@ -208,11 +208,6 @@ abort() {
   fi;
   exit 1;
 }
-do_treblecheck() {
-if [ "$(file_getprop /system/build.prop ro.treble.enabled)" != "true" ]; then
-  abort "Non-treble ROMs are unsupported. Aborting...";
-fi
-}
 do_devicecheck() {
   test "$(file_getprop anykernel.sh do.devicecheck)" == 1 || return 1;
   local device devicename match product testname vendordevice vendorproduct;
@@ -310,6 +305,17 @@ if [ "$(cat /proc/version)" != "$(cat $MODDIR/version)" ]; then
   rm -rf $MODDIR;
 fi;
 EOF
+}
+do_treblecheck() {
+if [ "$(file_getprop /system/build.prop ro.treble.enabled)" != "true" ]; then
+  abort "Non-treble ROMs are unsupported. Aborting...";
+fi
+}
+do_kernelcheck() {
+[ "$ZIPFILE" =~ "legacy" ] && target_lvl=2 || target_lvl=3
+if ! grep -q "target-level=\"$target_lvl\"" /vendor/etc/vintf/manifest.xml; then
+  abort "Unsupported ROM and kernel combo detected. Aborting..."
+fi
 }
 do_modules() {
   test "$(file_getprop anykernel.sh do.modules)" == 1 || return 1;
@@ -421,10 +427,11 @@ ui_print " " "AnyKernel3 by osm0sis @ xda-developers" " " " ";
 
 setup_env;
 
-do_treblecheck;
 do_devicecheck;
 do_versioncheck;
 do_levelcheck;
+do_treblecheck;
+do_kernelcheck;
 
 ui_print "Installing...";
 CORE=$($BB grep -oE 'ak.*core.sh' anykernel.sh);
