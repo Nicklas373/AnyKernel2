@@ -4,14 +4,14 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Fusion Kernel for Xiaomi Redmi Note 7
+kernel.string=Fusion Kernel by alanndz & Nicklas373 @ telegram
 do.devicecheck=1
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=lavender
-supported.versions=9, 10
+supported.versions=9 - 11
 supported.patchlevels=
 '; } # end properties
 
