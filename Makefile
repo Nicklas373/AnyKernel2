@@ -1,4 +1,4 @@
-NAME := Kizuna-Kernel-4.9
+NAME := Kizuna-Kernel
 
 CODE := Mido
 
