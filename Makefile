@@ -1,4 +1,4 @@
-NAME := Fusion-Kernel-for-lavender
+NAME := Fusion-Kernel
 
 CODE := Lavender
 
