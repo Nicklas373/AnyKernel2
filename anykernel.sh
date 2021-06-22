@@ -26,7 +26,7 @@ no_block_display=true;
 # import patching functions/variables - see for reference
 . tools/ak3-core.sh;
 
-## AnyKernel install
+## AnyKernel boot install
 dump_boot;
 
 # begin ramdisk changes
@@ -34,5 +34,21 @@ dump_boot;
 # end ramdisk changes
 
 write_boot;
-## end install
+## end boot install
+
+
+# shell variables
+#block=vendor_boot;
+#is_slot_device=1;
+#ramdisk_compression=auto;
+
+# reset for vendor_boot patching
+#reset_ak;
+
+
+## AnyKernel vendor_boot install
+#split_boot; # skip unpack/repack ramdisk since we don't need vendor_ramdisk access
+
+#flash_boot;
+## end vendor_boot install
 
